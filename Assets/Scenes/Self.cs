@@ -36,7 +36,7 @@ public class Self : MonoBehaviour
 
             rot_vector.x -= Input.GetAxis("Mouse Y");
             rot_vector.x = Mathf.Clamp(rot_vector.x, -10f, 10f);
-            rot_vector.y -= Input.GetAxis("Mouse X");
+            rot_vector.y += Input.GetAxis("Mouse X");
             transform.eulerAngles = new Vector3(0, rot_vector.y * rot_velocity , 0);
             Camera.main.transform.localRotation = Quaternion.Euler(rot_vector.x * rot_velocity, 0, 0);
 
