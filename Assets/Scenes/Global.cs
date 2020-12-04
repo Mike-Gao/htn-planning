@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Global
 {
-
+    public static readonly Vector3 obstacleHalfExtents = new Vector3(1, 1, 1);
 }

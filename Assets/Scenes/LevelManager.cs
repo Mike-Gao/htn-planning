@@ -8,13 +8,21 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject pathTile;
+    public GameObject rock;
+
+    public GameObject crate;
+
+    public int obstacleCount;
     public static int tileScale = 3; //default tile size 3
     public List<Vector2Int> allpoints = new List<Vector2Int>();
+
+    public Transform start;
+    public Transform end;
     // Start is called before the first frame update
     void Start()
     {
         GeneratePath();
+        GenerateRandomObstacles();
     }
 
 
@@ -24,10 +32,27 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    void GenerateRandomObstacles()
+    {
+        int spawnedCount = 0;
+        int iter = 0;
+        int maxIter = 80;
+        while(spawnedCount < obstacleCount && iter < maxIter){
+            Vector3 pos = new Vector3(Random.Range(start.position.x, end.position.x), 0, Random.Range(start.position.z, end.position.z));
+            if(!Physics.CheckBox(pos, Global.obstacleHalfExtents)){
+                GameObject prefab = Random.value > 0.5 ? rock : crate;
+                Instantiate(prefab, pos, Quaternion.Euler(0, Random.Range(0f, 90f), 0));
+                spawnedCount++;
+            }
+            iter++;
+        }
+
+    }
     void SpawnFloor(int x, int y)
     {
         // Spawn a tile
-        Instantiate(pathTile, new Vector3(x, 0.1f, y), Quaternion.identity);
+        GameObject prefab = Random.value > 0.5 ? rock : crate;
+        Instantiate(prefab, new Vector3(x, 0.1f, y), Quaternion.identity);
     }
 
     List<int> GetAvailableDirection(int x, int y, List<Vector2Int> visited)
