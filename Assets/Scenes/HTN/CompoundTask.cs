@@ -6,10 +6,6 @@ public class CompoundTask : Task
     public readonly string name;
 
     public readonly List<Method> methods_lst = new List<Method>();
-    
-    public CompoundTask(string n) {
-        this.name = n;
-    }
 
     public string GetName() {
         return this.name;
@@ -23,7 +19,14 @@ public class CompoundTask : Task
         return null;
     }
 
-    public void AddMethod(List<Method> lst) {
-        methods_lst.Add(new Method());
+    public void AddMethod(List<Task> lst) {
+        methods_lst.Add(new Method(lst));
+    }
+
+    public override bool Prev(State s) {
+        foreach(var m in methods_lst) {
+            if (m.Prev(s)) return true;
+        }
+        return false;
     }
 }
