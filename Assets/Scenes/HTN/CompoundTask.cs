@@ -24,6 +24,6 @@ public class CompoundTask : Task
     }
 
     public void AddMethod(List<Method> lst) {
-        methods_lst.Add(new Method())
+        methods_lst.Add(new Method());
     }
 }

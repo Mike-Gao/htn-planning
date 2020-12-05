@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Method : CompoundTask
 {
+    public Method()
+    {
+        
+    }
 
 }
