@@ -15,6 +15,10 @@ public class Self : MonoBehaviour
     private Vector3 mov_vector;
     private Vector2 rot_vector;
 
+    public bool shielded { get; private set; }
+
+    public float shield_timer = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +44,28 @@ public class Self : MonoBehaviour
             transform.eulerAngles = new Vector3(0, rot_vector.y * rot_velocity , 0);
             Camera.main.transform.localRotation = Quaternion.Euler(rot_vector.x * rot_velocity, 0, 0);
 
+
+            if (Input.GetKeyDown("space")) {
+                if (shielded) {
+                    shielded = !shielded;
+                } else {
+                    if (shield_timer > 0) {
+                        shielded = !shielded;
+                    }
+                }
+            }
+
+            if (shielded) {
+                shield_timer -= Time.deltaTime;
+                if (shield_timer < 0) {
+                    shield_timer = 0;
+                    shielded = false;
+                }
+                // TODO: Update UI Text Here
+            } else {
+                // TODO: Update UI Text Here
+            }
+
         }
     }
 
@@ -47,7 +73,7 @@ public class Self : MonoBehaviour
         if (hit.collider.tag == "valueable") {
             hit.collider.GetComponent<Renderer>().material.color = Color.yellow;
             // Change state to true;
-            // global.state
+            Global.ws.treasurePickedUp = true;
         }
     }
 
