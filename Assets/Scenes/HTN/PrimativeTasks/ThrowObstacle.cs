@@ -17,7 +17,7 @@ public class ThrowObstacle : PrimativeTask
         s.ObjectInHand = null;
     }
 
-    public void Start(Monster m)
+    public override void Start(Monster m)
     {
         tgt = new Vector3(m.player.transform.position.x, m.currentObject.transform.position.y, m.player.transform.position.z);
         m.currentObject.transform.SetParent(null);

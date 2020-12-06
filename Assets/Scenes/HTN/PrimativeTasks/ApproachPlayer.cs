@@ -12,7 +12,7 @@ public class ApproachPlayer : PrimativeTask
         s.location = s.playerLocation;
     }
 
-    public void Start(Monster m) {
+    public override void Start(Monster m) {
         m.agent.destination = Global.ws.playerLocation;
     }
 

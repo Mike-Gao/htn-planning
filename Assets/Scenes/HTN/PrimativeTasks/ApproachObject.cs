@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class ApproachObject : PrimativeTask
 {
-    GameObject Object;
+    string objType;
 
-    public ApproachObject(GameObject obj)
+    public ApproachObject(string s)
     {
-        this.Object = obj;
+        objType = s;
     }
     public override bool Prev(State s)
     {
-        if (Object.tag == "crate" && s.crateCount > 0) {
-            s.nearestObject = Object;
+        if (objType == "crate" && s.crateCount > 0 && s.nearestObject.tag == "crate" || objType == s.nearestObject.tag) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void Start(Monster m){
+    public override void Start(Monster m){
         m.agent.destination = Global.ws.target.transform.position;
     }
 

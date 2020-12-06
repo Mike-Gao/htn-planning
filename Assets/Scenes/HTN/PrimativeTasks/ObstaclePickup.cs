@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ObstaclePickUp : PrimativeTask
 {
-    GameObject obj;
+    string objType;
 
-    public ObstaclePickUp(GameObject obj) {
-        this.obj = obj;
+    public ObstaclePickUp(string s) {
+        this.objType = s;
     }
 
     public override bool Prev(State s)
@@ -17,14 +17,14 @@ public class ObstaclePickUp : PrimativeTask
 
     public override void Post(State s)
     {
-        s.ObjectInHand = obj;
+        s.ObjectInHand = Global.ws.nearestObject;
     }
 
-    public void Start(Monster m)
+    public override void Start(Monster m)
     {
         m.currentObject = Global.ws.target;
         m.currentObject.transform.position = new Vector3(m.transform.position.x, m.transform.position.y + 4f, m.transform.position.z);
         m.currentObject.transform.SetParent(m.transform);
-        Global.ws.ObjectInHand = obj;
+        Global.ws.ObjectInHand.tag = objType;
     }
 }

@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public static int tileScale = 3; //default tile size 3
     public List<Vector2Int> allpoints = new List<Vector2Int>();
 
+    public List<GameObject> obstacles = new List<GameObject>();
     public Transform start;
     public Transform end;
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class LevelManager : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(start.position.x, end.position.x), 0, Random.Range(start.position.z, end.position.z));
             if(!Physics.CheckBox(pos, Global.obstacleHalfExtents)){
                 GameObject prefab = Random.value > 0.5 ? rock : crate;
-                Instantiate(prefab, pos, Quaternion.Euler(0, Random.Range(0f, 90f), 0));
+                obstacles.Add(Instantiate(prefab, pos, Quaternion.Euler(0, Random.Range(0f, 90f), 0)));
                 spawnedCount++;
             }
             iter++;
@@ -52,7 +53,7 @@ public class LevelManager : MonoBehaviour
     {
         // Spawn a tile
         GameObject prefab = Random.value > 0.5 ? rock : crate;
-        Instantiate(prefab, new Vector3(x, 0.1f, y), Quaternion.identity);
+        obstacles.Add(Instantiate(prefab, new Vector3(x, 0.1f, y), Quaternion.identity));
     }
 
     List<int> GetAvailableDirection(int x, int y, List<Vector2Int> visited)
