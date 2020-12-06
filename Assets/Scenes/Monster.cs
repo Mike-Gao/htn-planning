@@ -20,6 +20,8 @@ public class Monster : MonoBehaviour
 
     public Text planLabel;
 
+    public Text actionLabel;
+
     public Self player;
 
     public static readonly Cooldown cooldown = new Cooldown();
@@ -73,6 +75,7 @@ public class Monster : MonoBehaviour
         }
 
         Action();
+        actionLabel.text = current == null? "No Task" : current.name;
 
     }
 

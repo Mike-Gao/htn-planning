@@ -3,18 +3,19 @@ using System.Collections.Generic;
 
 public class CompoundTask : Task
 {
-    public readonly string name;
 
     public readonly List<Method> methods_lst = new List<Method>();
 
-    public string GetName() {
-        return this.name;
-    }
-
     public Method GetMethod(State s, Method last) {
+        bool afterLast = last == null || !methods_lst.Contains(last);
         foreach (var m in methods_lst)
         {
-            if (m.Prev(s)) return m;
+            if (afterLast) {
+                if (m.Prev(s)) return m;
+            } else {
+                if (m == last) afterLast = true;
+            }
+            
         }
         return null;
     }
