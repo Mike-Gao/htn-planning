@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public abstract class PrimativeTask : Task
 {
 
-
+    public abstract string name { get; }
     public virtual void Post(State s) {}
 
     public virtual void Start(Monster m) {}

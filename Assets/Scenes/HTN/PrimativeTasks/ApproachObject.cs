@@ -5,9 +5,12 @@ using UnityEngine;
 public class ApproachObject : PrimativeTask
 {
     string objType;
+    
+    public override string name { get; }
 
     public ApproachObject(string s)
     {
+        name = "Approach" + s;
         objType = s;
     }
     public override bool Prev(State s)

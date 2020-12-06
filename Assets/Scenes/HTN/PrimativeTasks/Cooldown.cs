@@ -5,6 +5,8 @@ using UnityEngine;
 public class Cooldown : PrimativeTask
 {
     float end;
+
+    public override string name => "cooldown";
     public override void Start(Monster m)
     {
         // wait 1 second

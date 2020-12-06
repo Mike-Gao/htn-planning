@@ -5,6 +5,7 @@ using UnityEngine;
 public class ApproachPlayer : PrimativeTask
 {
 
+    public override string name => "ApproachPlayer";
 
     public override void Post(State s)
     {

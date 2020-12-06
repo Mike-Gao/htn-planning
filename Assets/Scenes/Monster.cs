@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class Monster : MonoBehaviour
@@ -16,6 +17,8 @@ public class Monster : MonoBehaviour
     public GameObject currentObject;
 
     private LevelManager lvlMgr;
+
+    public Text planLabel;
 
     public Self player;
 
@@ -71,10 +74,22 @@ public class Monster : MonoBehaviour
 
     }
 
+    void ShowPlan(List<PrimativeTask> tasks) 
+    {
+        List<string> taskNames = new List<string>();
+        for(int i = tasks.Count - 1; i >= 0; i--) {
+            taskNames.Add(tasks[i].name);
+        }
+
+        planLabel.text = string.Join("-", taskNames);
+
+
+    }
     void Action()
     {
         if (current == null && (plan == null || plan.Count == 0)) {
             plan = htn.GetPlan();
+            ShowPlan(plan);
             return;
         }
 

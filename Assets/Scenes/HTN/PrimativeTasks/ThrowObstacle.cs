@@ -7,6 +7,9 @@ public class ThrowObstacle : PrimativeTask
     Vector3 tgt;
     public static readonly float velocity = 6;
 
+    
+    public override string name => "ThrowObstacle";
+
     public override bool Prev(State s)
     {
         return s.playerInRange && s.ObjectInHand != null;

@@ -6,8 +6,10 @@ public class ObstaclePickUp : PrimativeTask
 {
     string objType;
 
+    public override string name { get;}
     public ObstaclePickUp(string s) {
         this.objType = s;
+        name = "pickup" + s;
     }
 
     public override bool Prev(State s)
