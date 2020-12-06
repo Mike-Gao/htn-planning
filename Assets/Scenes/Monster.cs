@@ -67,6 +67,7 @@ public class Monster : MonoBehaviour
             var curDistSqrt = (transform.position - elem.transform.position).sqrMagnitude;
             if (curDistSqrt < best) {
                 best = curDistSqrt;
+                Global.ws.nearestObject = elem;
             }
         }
 
