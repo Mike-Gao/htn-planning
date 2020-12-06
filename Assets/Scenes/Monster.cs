@@ -11,7 +11,7 @@ public class Monster : MonoBehaviour
 
     private PrimativeTask current;
 
-    private GameObject currentObject;
+    public GameObject currentObject;
 
     private LevelManager lvlMgr;
 

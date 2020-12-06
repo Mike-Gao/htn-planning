@@ -5,12 +5,10 @@ using UnityEngine;
 public class State
 {
     public bool treasurePickedUp = false;
-    public bool crateInHand = false;
+    public GameObject ObjectInHand = null;
 
     public int crateCount = 0;
     public bool playerInRange = false;
-
-    public bool crateOnGround = false;
 
     public GameObject nearestObject;
 
@@ -26,7 +24,7 @@ public class State
         return new State {
             treasurePickedUp = treasurePickedUp,
             crateCount = crateCount,
-            crateInHand = crateInHand,
+            ObjectInHand = ObjectInHand,
             playerInRange = playerInRange,
             crateOnGround = crateOnGround,
             nearestObject = nearestObject,
