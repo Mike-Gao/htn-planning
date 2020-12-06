@@ -41,6 +41,7 @@ public class HTNPlanner
                 }
             }
         }
+        plan.Reverse();
         return plan;
     }
 }
