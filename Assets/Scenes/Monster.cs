@@ -33,6 +33,7 @@ public class Monster : MonoBehaviour
         /* Build a HTN */
         var root = new CompoundTask();
         htn = new HTNPlanner(root);
+
         var ApproachCrate = new ApproachObject("crate");
         var PickUpCrate = new ObstaclePickUp("crate");
         var ApproachPlayer = new ApproachPlayer();
@@ -44,9 +45,9 @@ public class Monster : MonoBehaviour
         AttackUsingCrate.AddMethod(new List<Task>() {ApproachCrate, PickUpCrate, ApproachPlayer, ThrowObstacle});
 
         var AttackUsingRock = new CompoundTask();
-        AttackUsingRock.AddMethod(new List<Task> (){ApproachRock, ApproachPlayer, PickUpRock, ThrowObstacle});
+        AttackUsingRock.AddMethod(new List<Task> (){ApproachRock, PickUpRock, ApproachPlayer, ThrowObstacle});
 
-        root.AddMethod(new List<Task> {AttackUsingCrate, AttackUsingRock});
+        root.AddMethod(new List<Task> (){AttackUsingCrate, AttackUsingRock});
 
 
 

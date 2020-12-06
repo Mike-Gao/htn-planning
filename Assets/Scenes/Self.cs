@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Self : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Self : MonoBehaviour
     public bool shielded { get; private set; }
 
     public float shield_timer = 10f;
+
+    public Text shieldValue;
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +64,8 @@ public class Self : MonoBehaviour
                     shield_timer = 0;
                     shielded = false;
                 }
-                // TODO: Update UI Text Here
-            } else {
-                // TODO: Update UI Text Here
+                shieldValue.text = "Shield Available " + shield_timer.ToString();
+
             }
 
         }
