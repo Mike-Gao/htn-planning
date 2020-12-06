@@ -27,6 +27,7 @@ public class HTNPlanner
                     (tasks, plan, m, s) = history.Pop();
                 } else {
                     history.Push((new Stack<Task>(tasks), new List<PrimativeTask>(plan), m, s));
+                    m.AddMethodSubtasksToStack(tasks);
                 }
             } else if (t is PrimativeTask pt) {
                 if (t.Prev(s))
