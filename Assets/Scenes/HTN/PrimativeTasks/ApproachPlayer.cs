@@ -14,12 +14,13 @@ public class ApproachPlayer : PrimativeTask
     }
 
     public override void Start(Monster m) {
-        m.agent.destination = Global.ws.playerLocation;
+        m.agent.destination = Global.ws.playerLocation - m.transform.position;
     }
 
     public override bool Terminates(Monster m)
     {
-        if (m.agent.velocity.sqrMagnitude < 0.001)
+        // Shooting range is sqrt(40)
+        if ( (m.agent.destination - m.transform.position).sqrMagnitude < 30  && m.agent.velocity.sqrMagnitude < 0.001)
         {
             m.agent.isStopped = true;
             m.agent.ResetPath();

@@ -24,9 +24,17 @@ public class ObstaclePickUp : PrimativeTask
 
     public override void Start(Monster m)
     {
-        m.currentObject = Global.ws.target;
-        m.currentObject.transform.position = new Vector3(m.transform.position.x, m.transform.position.y + 4f, m.transform.position.z);
-        m.currentObject.transform.SetParent(m.transform);
-        Global.ws.ObjectInHand.tag = objType;
+        Global.ws.ObjectInHand = Global.ws.nearestObject;
+        Global.ws.ObjectInHand.transform.position = new Vector3(m.transform.position.x, m.transform.position.y + 4f, m.transform.position.z);
+        Global.ws.ObjectInHand.transform.SetParent(m.transform);
+        // m.currentObject = Global.ws.target;
+        // m.currentObject.transform.position = new Vector3(m.transform.position.x, m.transform.position.y + 4f, m.transform.position.z);
+        // m.currentObject.transform.SetParent(m.transform);
+        // Global.ws.ObjectInHand.tag = objType;
+    }
+
+    public override bool Terminates(Monster m)
+    {
+        return true;
     }
 }

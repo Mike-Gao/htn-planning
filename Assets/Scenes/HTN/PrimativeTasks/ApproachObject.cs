@@ -32,7 +32,7 @@ public class ApproachObject : PrimativeTask
 
     public override bool Terminates(Monster m)
     {
-        if (m.agent.destination == m.agent.nextPosition && m.agent.velocity.sqrMagnitude < 0.001)
+        if ((m.agent.destination - m.transform.position).sqrMagnitude < 15 && m.agent.velocity.sqrMagnitude < 0.001)
         {
             m.agent.isStopped = true;
             m.agent.ResetPath();
