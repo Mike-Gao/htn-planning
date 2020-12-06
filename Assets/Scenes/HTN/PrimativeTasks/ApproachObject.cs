@@ -26,12 +26,13 @@ public class ApproachObject : PrimativeTask
     }
 
     public override void Start(Monster m){
-        m.agent.destination = Global.ws.target.transform.position;
+        m.agent.destination = Global.ws.nearestObject.transform.position;
     }
+
 
     public override bool Terminates(Monster m)
     {
-        if (m.agent.velocity.sqrMagnitude < 0.001)
+        if (m.agent.destination == m.agent.nextPosition && m.agent.velocity.sqrMagnitude < 0.001)
         {
             m.agent.isStopped = true;
             m.agent.ResetPath();
@@ -42,6 +43,6 @@ public class ApproachObject : PrimativeTask
 
     public override void Post(State s)
     {
-        s.location = s.target.transform.position;
+        s.location = s.nearestObject.transform.position;
     }
 }
