@@ -14,7 +14,7 @@ public class HTNPlanner
     public List<PrimativeTask> GetPlan() {
         history = new Stack<(Stack<Task> t, List<PrimativeTask> plan, Method m, State state)>();
         List<PrimativeTask> plan = new List<PrimativeTask>();
-        State s = Global.ws;
+        State s = Global.ws.Clone();
         Stack<Task> tasks = new Stack<Task>();
         tasks.Push(root);
         Method m = null;
