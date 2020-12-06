@@ -14,7 +14,7 @@ public class ObstaclePickUp : PrimativeTask
 
     public override bool Prev(State s)
     {
-        return s.ObjectInHand == null && (s.target.transform.position - s.location).sqrMagnitude < 9;
+        return s.ObjectInHand == null && (s.nearestObject.transform.position - s.location).sqrMagnitude < 9;
     }
 
     public override void Post(State s)
