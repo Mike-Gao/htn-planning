@@ -15,7 +15,7 @@ public class Monster : MonoBehaviour
 
     private LevelManager lvlMgr;
 
-    private Self player;
+    public Self player;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class Monster : MonoBehaviour
         /* Build a HTN */
         var root = new CompoundTask();
         htn = new HTNPlanner(root);
+
     }
 
     // Update is called once per frame

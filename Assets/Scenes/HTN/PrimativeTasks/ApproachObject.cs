@@ -5,6 +5,11 @@ using UnityEngine;
 public class ApproachObject : PrimativeTask
 {
     GameObject Object;
+
+    public ApproachObject(GameObject obj)
+    {
+        this.Object = obj;
+    }
     public override bool Prev(State s)
     {
         if (Object.tag == "crate" && s.crateCount > 0) {
@@ -30,7 +35,7 @@ public class ApproachObject : PrimativeTask
         return false;
     }
 
-    public void Post(State s)
+    public override void Post(State s)
     {
         s.location = s.target.transform.position;
     }

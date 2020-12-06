@@ -26,7 +26,6 @@ public class State
             crateCount = crateCount,
             ObjectInHand = ObjectInHand,
             playerInRange = playerInRange,
-            crateOnGround = crateOnGround,
             nearestObject = nearestObject,
             target = target,
             location = location,
