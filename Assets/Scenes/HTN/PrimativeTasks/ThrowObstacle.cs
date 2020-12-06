@@ -22,19 +22,27 @@ public class ThrowObstacle : PrimativeTask
 
     public override void Start(Monster m)
     {
-        tgt = new Vector3(m.player.transform.position.x, m.currentObject.transform.position.y, m.player.transform.position.z);
-        m.currentObject.transform.SetParent(null);
+        tgt = new Vector3(m.player.transform.position.x, Global.ws.ObjectInHand.transform.position.y, Global.ws.ObjectInHand.transform.position.z);
+        Global.ws.ObjectInHand.transform.SetParent(null);
     }
 
     public bool Terminate(Monster m) {
-        var cur = m.currentObject.transform.position;
+        var cur = Global.ws.ObjectInHand.transform.position;
 
         if (cur.x != tgt.x || cur.z != tgt.z)
         {
-            m.currentObject.transform.position = Vector3.MoveTowards(cur, tgt, velocity * Time.deltaTime);
+            Global.ws.ObjectInHand.transform.position = Vector3.MoveTowards(cur, tgt, velocity * Time.deltaTime);
             return false;
         }
-        m.currentObject = null;
+
+        if (cur.y > 1)
+        {
+            var newtgt = new Vector3(tgt.x, 1, tgt.z);
+            Global.ws.ObjectInHand.transform.position = Vector3.MoveTowards(cur, newtgt, velocity * Time.deltaTime);
+            return false;
+        }
+
+        Global.ws.ObjectInHand = null;
         return true;
     }
 

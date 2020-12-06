@@ -14,8 +14,6 @@ public class Monster : MonoBehaviour
 
     private List<PrimativeTask> plan = new List<PrimativeTask>();
 
-    public GameObject currentObject;
-
     private LevelManager lvlMgr;
 
     public Text planLabel;
