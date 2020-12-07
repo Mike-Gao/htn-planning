@@ -74,8 +74,8 @@ public class Monster : MonoBehaviour
         attackUsingRock.AddMethod(new List<Task>() { ApproachPlayer, ThrowObstacle });
 
         var move = new CompoundTask();
-        move.AddMethod(new List<Task>() { ApproachPlayer });
         move.AddMethod(new List<Task>() { ApproachRandom });
+        move.AddMethod(new List<Task>() { ApproachPlayer });
         
         root.AddMethod(new List<Task>() { attackUsingCrate });
         root.AddMethod(new List<Task>() { attackUsingRock });

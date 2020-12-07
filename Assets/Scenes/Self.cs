@@ -27,8 +27,8 @@ public class Self : MonoBehaviour
     {
         chara_control = GetComponent<CharacterController>();
         // TODO: Comment out the following two line when debugging
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -65,7 +65,7 @@ public class Self : MonoBehaviour
                     shield_timer = 0;
                     shielded = false;
                 }
-                shieldValue.text = "Shield Available " + shield_timer.ToString();
+                shieldValue.text = "Shield Available " + shield_timer.ToString("n2");
 
             }
 
