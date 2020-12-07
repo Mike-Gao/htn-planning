@@ -20,18 +20,20 @@ public class HTNPlanner
         Method m = null;
         while (tasks.Count > 0)
         {
-            Task t = tasks.Pop();
+            Task t = tasks.Peek();
             if(t is CompoundTask ct){
                 m = ct.GetMethod(s, m);
                 if (m == null) {
                     (tasks, plan, m, s) = history.Pop();
                 } else {
                     history.Push((new Stack<Task>(tasks), new List<PrimativeTask>(plan), m, s.Clone()));
+                    tasks.Pop();
                     m.AddMethodSubtasksToStack(tasks);
                 }
             } else if (t is PrimativeTask pt) {
                 if (t.Prev(s))
                 {
+                    tasks.Pop();
                     pt.Post(s);
                     plan.Add(pt);
                 }
