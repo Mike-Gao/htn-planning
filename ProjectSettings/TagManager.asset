@@ -6,6 +6,7 @@ TagManager:
   tags:
   - crate
   - rock
+  - treasure
   layers:
   - Default
   - TransparentFX

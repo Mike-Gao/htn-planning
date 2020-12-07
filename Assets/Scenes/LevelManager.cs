@@ -5,6 +5,7 @@ using System.Security.AccessControl;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -19,17 +20,33 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> obstacles = new List<GameObject>();
     public Transform start;
     public Transform end;
+
+    public Transform spawn_pos;
+
+    private Self player;
+
+    public Text displayWin;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<Self>();
         GeneratePath();
         GenerateRandomObstacles();
+        SpawnMouse();
     }
 
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        // If go back to spawn and treasure pickedup, player wins
+        if(Global.ws.treasurePickedUp && (player.transform.position - spawn_pos.position).sqrMagnitude < 20) {
+            displayWin.text = "YOU WIN!";
+        }
+        if (Global.ws.hit == 3) {
+            displayWin.text = "YOU LOST!";
+        }
 
     }
 
@@ -37,7 +54,7 @@ public class LevelManager : MonoBehaviour
     {
         int spawnedCount = 0;
         int iter = 0;
-        int maxIter = 80;
+        int maxIter = 40;
         while(spawnedCount < obstacleCount && iter < maxIter){
             Vector3 pos = new Vector3(Random.Range(start.position.x, end.position.x), 0, Random.Range(start.position.z, end.position.z));
             if(!Physics.CheckBox(pos, Global.obstacleHalfExtents)){
@@ -49,6 +66,12 @@ public class LevelManager : MonoBehaviour
         }
 
     }
+
+    void SpawnMouse()
+    {
+
+    }
+
     void SpawnFloor(int x, int y)
     {
         // Spawn a tile

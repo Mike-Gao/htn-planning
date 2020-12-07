@@ -72,7 +72,7 @@ public class Self : MonoBehaviour
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if (hit.collider.tag == "valueable") {
+        if (hit.collider.tag == "treasure") {
             hit.collider.GetComponent<Renderer>().material.color = Color.yellow;
             // Change state to true;
             Global.ws.treasurePickedUp = true;
