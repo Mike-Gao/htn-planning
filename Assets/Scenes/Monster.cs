@@ -94,7 +94,13 @@ public class Monster : MonoBehaviour
         float best = Mathf.Infinity;
 
         foreach(var elem in lvlMgr.obstacles) {
-            if (elem.tag == "crate") Global.ws.crateCount++;
+            if (elem.tag == "used") {
+                // Cleanup used tag
+                lvlMgr.obstacles.Remove(elem);
+                Destroy(elem);
+            } else if (elem.tag == "crate") {
+                Global.ws.crateCount++;
+            }
             var curDistSqrt = (transform.position - elem.transform.position).sqrMagnitude;
             if (curDistSqrt < best) {
                 best = curDistSqrt;

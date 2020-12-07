@@ -8,6 +8,7 @@ TagManager:
   - rock
   - treasure
   - monster
+  - used
   layers:
   - Default
   - TransparentFX

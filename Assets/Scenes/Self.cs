@@ -86,18 +86,14 @@ public class Self : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {   
-        if (col.gameObject.tag == "crate") {
-            if (!shielded){
+        if ((col.gameObject.tag == "crate" || col.gameObject.tag == "rock") && col.gameObject != null)
+        {
+            if (!shielded)
+            {
                 Global.ws.hit++;
             }
-            
             lvlMgr.obstacles.Remove(col.gameObject);
             Destroy(col.gameObject);
-        } else if (col.gameObject.tag == "rock" && col.gameObject != null) {
-            if (!shielded) {
-                Global.ws.hit++;
-            }
-            Global.ws.hit++;
         }
     }
 

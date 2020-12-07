@@ -24,12 +24,12 @@ public class ThrowObstacle : PrimativeTask
     }
 
     public override bool Terminate(Monster m) {
+        Debug.Log("Calling Terminate");
         if (Global.ws.ObjectInHand == null) {
             return true;
         }
         
         var cur = Global.ws.ObjectInHand.transform.position;
-
 
         if (cur.x != tgt.x || cur.z != tgt.z)
         {
@@ -37,11 +37,17 @@ public class ThrowObstacle : PrimativeTask
             return false;
         }
 
-        if (cur.y > 1.38)
+        if (cur.y > 1)
         {
-            var newtgt = new Vector3(tgt.x, 0.5f, tgt.z);
+            Debug.Log("Drop");
+            var newtgt = new Vector3(tgt.x, 0f, tgt.z);
             Global.ws.ObjectInHand.transform.position = Vector3.MoveTowards(cur, newtgt, 6 * Time.deltaTime);
             return false;
+        }
+
+        // If it's a crate, destroy by any use, so we tag it as "used" thats automatically cleaned by Update()
+        if (Global.ws.ObjectInHand.tag == "crate") {
+            Global.ws.ObjectInHand.tag = "used";
         }
 
         Global.ws.ObjectInHand = null;
