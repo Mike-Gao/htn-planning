@@ -126,7 +126,8 @@ public class Monster : MonoBehaviour
     }
     void Action()
     {
-        if (current == null && (plan == null || plan.Count == 0)) {
+        //if (plan!=null) Debug.Log(plan.Count);
+        if ((current == null || current == cooldown) && (plan == null || plan.Count == 0)) {
             plan = htn.GetPlan();
             ShowPlan(plan);
             return;

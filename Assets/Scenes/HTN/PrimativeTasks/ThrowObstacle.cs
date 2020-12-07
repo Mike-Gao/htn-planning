@@ -9,22 +9,25 @@ public class ThrowObstacle : PrimativeTask
 
     public override bool Prev(State s)
     {
+        //Debug.Log("Prev");
         return s.playerInRange && s.ObjectInHand != null;
     }
 
     public override void Post(State s)
     {
+        //Debug.Log("Post");
         s.ObjectInHand = null;
     }
 
     public override void Start(Monster m)
     {
+        //Debug.Log("Start");
         tgt = new Vector3(m.player.transform.position.x, Global.ws.ObjectInHand.transform.position.y, m.player.transform.position.z);
         Global.ws.ObjectInHand.transform.SetParent(null);
     }
 
     public override bool Terminate(Monster m) {
-        Debug.Log("Calling Terminate");
+        //Debug.Log("Calling Terminate");
         if (Global.ws.ObjectInHand == null) {
             return true;
         }
