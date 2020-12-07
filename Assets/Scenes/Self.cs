@@ -22,9 +22,12 @@ public class Self : MonoBehaviour
 
     public Text shieldValue;
 
+    public LevelManager lvlMgr;
+
     // Start is called before the first frame update
     void Start()
     {
+        lvlMgr = FindObjectOfType<LevelManager>();
         chara_control = GetComponent<CharacterController>();
         // TODO: Comment out the following two line when debugging
         Cursor.lockState = CursorLockMode.Locked;
@@ -79,6 +82,7 @@ public class Self : MonoBehaviour
             Global.ws.treasurePickedUp = true;
         }
     }
+    
 
     void OnTriggerEnter(Collider col)
     {   
@@ -87,11 +91,9 @@ public class Self : MonoBehaviour
                 Global.ws.hit++;
             }
             
-            Destroy(col.transform.parent.gameObject);
+            lvlMgr.obstacles.Remove(col.gameObject);
             Destroy(col.gameObject);
-        }
-
-        if (col.gameObject.tag == "rock") {
+        } else if (col.gameObject.tag == "rock" && col.gameObject != null) {
             if (!shielded) {
                 Global.ws.hit++;
             }

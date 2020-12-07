@@ -12,7 +12,7 @@ public class ApproachRandom : PrimativeTask
     }
     public override bool Prev(State s)
     {
-        if (s.ObjectInHand is null) {
+        if (s.ObjectInHand is null && s.random < 0.5) {
             return true;
         }
         return false;

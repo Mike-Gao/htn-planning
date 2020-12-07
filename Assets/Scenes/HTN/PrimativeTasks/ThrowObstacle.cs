@@ -24,7 +24,12 @@ public class ThrowObstacle : PrimativeTask
     }
 
     public override bool Terminate(Monster m) {
+        if (Global.ws.ObjectInHand == null) {
+            return true;
+        }
+        
         var cur = Global.ws.ObjectInHand.transform.position;
+
 
         if (cur.x != tgt.x || cur.z != tgt.z)
         {
@@ -34,7 +39,7 @@ public class ThrowObstacle : PrimativeTask
 
         if (cur.y > 1.38)
         {
-            var newtgt = new Vector3(tgt.x, 1, tgt.z);
+            var newtgt = new Vector3(tgt.x, 0.5f, tgt.z);
             Global.ws.ObjectInHand.transform.position = Vector3.MoveTowards(cur, newtgt, 6 * Time.deltaTime);
             return false;
         }
