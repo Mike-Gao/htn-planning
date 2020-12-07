@@ -15,10 +15,7 @@ public class ApproachRandom : PrimativeTask
     }
     public override bool Prev(State s)
     {
-        if (s.random > 0.5){
-            return true;
-        }
-        return false;
+        return (!s.ObjectInHand);
     }
 
     public override void Start(Monster m){
