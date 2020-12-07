@@ -15,9 +15,6 @@ public class ApproachObject : PrimativeTask
     }
     public override bool Prev(State s)
     {
-        //Debug.Log("objType" + objType);
-        //Debug.Log("s.nearestObject" + s.nearestObject);
-        //Debug.Log("s.nearestObject.tag" + s.nearestObject.tag);
         if (objType == "crate" && s.crateCount > 0 && s.nearestObject.tag == "crate" || objType == s.nearestObject.tag) {
             return true;
         } else {

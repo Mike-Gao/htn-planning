@@ -16,11 +16,9 @@ public class State
     
     public Vector3 location;
 
-    public float random;
 
     public int hit;
     public Vector3 playerLocation;
-
 
 
     public State Clone() {
@@ -33,7 +31,6 @@ public class State
             target = target,
             location = location,
             hit = hit,
-            random = random,
             playerLocation = playerLocation,
         };
     }

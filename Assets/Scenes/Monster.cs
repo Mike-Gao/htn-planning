@@ -58,6 +58,7 @@ public class Monster : MonoBehaviour
 
         var ApproachRock = new ApproachObject("rock");
         var PickUpRock = new ObstaclePickUp("rock");
+        var ApproachRandom = new ApproachRandom(lvlMgr.start.transform, lvlMgr.end.transform);
 
         var getCrate = new CompoundTask();
         getCrate.AddMethod(new List<Task>() { ApproachCrate, PickUpCrate });
