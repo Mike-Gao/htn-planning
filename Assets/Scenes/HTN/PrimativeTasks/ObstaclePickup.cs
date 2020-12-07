@@ -33,7 +33,7 @@ public class ObstaclePickUp : PrimativeTask
         // Global.ws.ObjectInHand.tag = objType;
     }
 
-    public override bool Terminates(Monster m)
+    public override bool Terminate(Monster m)
     {
         return true;
     }

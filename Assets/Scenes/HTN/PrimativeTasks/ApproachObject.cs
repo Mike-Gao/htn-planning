@@ -30,7 +30,7 @@ public class ApproachObject : PrimativeTask
     }
 
 
-    public override bool Terminates(Monster m)
+    public override bool Terminate(Monster m)
     {
         if ((m.agent.destination - m.transform.position).sqrMagnitude < 15 && m.agent.velocity.sqrMagnitude < 0.001)
         {

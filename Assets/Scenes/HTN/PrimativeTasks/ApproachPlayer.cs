@@ -17,7 +17,7 @@ public class ApproachPlayer : PrimativeTask
         m.agent.destination =  Global.ws.playerLocation - (Global.ws.playerLocation - m.transform.position) / 2;
     }
 
-    public override bool Terminates(Monster m)
+    public override bool Terminate(Monster m)
     {
         // Shooting range is sqrt(40)
         if ( (m.agent.destination - m.transform.position).sqrMagnitude < 30  && m.agent.velocity.sqrMagnitude < 0.001)

@@ -128,7 +128,7 @@ public class Monster : MonoBehaviour
         }
 
 
-        if (current.Terminates(this)) {
+        if (current.Terminate(this)) {
             if (current == cooldown) {
                 current = null;
             } else {

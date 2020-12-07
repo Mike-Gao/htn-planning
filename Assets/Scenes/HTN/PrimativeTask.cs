@@ -10,5 +10,5 @@ public abstract class PrimativeTask : Task
     public virtual void Start(Monster m) {}
 
     // return true if it terminates
-    public virtual bool Terminates(Monster m) { return true; }
+    public virtual bool Terminate(Monster m) { return true; }
 }

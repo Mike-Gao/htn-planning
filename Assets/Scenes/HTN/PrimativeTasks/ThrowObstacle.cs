@@ -23,7 +23,7 @@ public class ThrowObstacle : PrimativeTask
         Global.ws.ObjectInHand.transform.SetParent(null);
     }
 
-    public override bool Terminates(Monster m) {
+    public override bool Terminate(Monster m) {
         var cur = Global.ws.ObjectInHand.transform.position;
 
         if (cur.x != tgt.x || cur.z != tgt.z)

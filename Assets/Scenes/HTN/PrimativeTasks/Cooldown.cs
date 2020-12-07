@@ -13,7 +13,7 @@ public class Cooldown : PrimativeTask
         end = Time.time + 1;
     }
 
-    public override bool Terminates(Monster m)
+    public override bool Terminate(Monster m)
     {
         return Time.time > end;
     }
