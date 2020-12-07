@@ -11,8 +11,6 @@ public class State
     public bool playerInRange = false;
 
     public GameObject nearestObject;
-
-    public GameObject target;
     
     public Vector3 location;
 
@@ -32,7 +30,6 @@ public class State
             ObjectInHand = ObjectInHand,
             playerInRange = playerInRange,
             nearestObject = nearestObject,
-            target = target,
             location = location,
             random = random,
             randPos = randPos,
