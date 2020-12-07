@@ -39,6 +39,11 @@ public class LevelManager : MonoBehaviour
         GeneratePath();
         GenerateRandomObstacles();
         SpawnMouse();
+        InvokeRepeating(nameof(UpdateRandom), 0, 2);
+    }
+
+    void UpdateRandom(){
+        Global.ws.random = Random.Range(0f, 1f);
     }
 
 

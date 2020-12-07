@@ -37,17 +37,21 @@ public class Monster : MonoBehaviour
         // var ApproachCrate = new ApproachObject("crate");
         // var PickUpCrate = new ObstaclePickUp("crate");
         // var ApproachPlayer = new ApproachPlayer();
-        // var ApproachRock = new ApproachObject("rock");
-        // var PickUpRock = new ObstaclePickUp("rock");
         // var ThrowObstacle = new ThrowObstacle();
 
-        // var AttackUsingCrate = new CompoundTask();
-        // AttackUsingCrate.AddMethod(new List<Task>() {ApproachCrate, PickUpCrate, ApproachPlayer, ThrowObstacle});
+        // var ApproachRock = new ApproachObject("rock");
+        // var PickUpRock = new ObstaclePickUp("rock");
+        // var ApproachRandom = new ApproachRandom(lvlMgr.start.transform, lvlMgr.end.transform);
 
-        // var AttackUsingRock = new CompoundTask();
-        // AttackUsingRock.AddMethod(new List<Task> (){ApproachRock, PickUpRock, ApproachPlayer, ThrowObstacle});
+        // var getCrate = new CompoundTask();
+        // getCrate.AddMethod(new List<Task>() { ApproachCrate, PickUpCrate });
 
-        // root.AddMethod(new List<Task> (){AttackUsingCrate, AttackUsingRock});
+        // var getRock = new CompoundTask();
+        // getRock.AddMethod(new List<Task>() { ApproachRock, PickUpRock });
+        
+        // root.AddMethod(new List<Task>() { getCrate, ApproachPlayer, ThrowObstacle });
+        // root.AddMethod(new List<Task>() { getRock, ApproachPlayer, ThrowObstacle });
+
         var root = new CompoundTask();
         htn = new HTNPlanner(root);
 
@@ -58,16 +62,24 @@ public class Monster : MonoBehaviour
 
         var ApproachRock = new ApproachObject("rock");
         var PickUpRock = new ObstaclePickUp("rock");
+
         var ApproachRandom = new ApproachRandom(lvlMgr.start.transform, lvlMgr.end.transform);
 
-        var getCrate = new CompoundTask();
-        getCrate.AddMethod(new List<Task>() { ApproachCrate, PickUpCrate });
+        var attackUsingCrate = new CompoundTask();
+        attackUsingCrate.AddMethod(new List<Task>() { ApproachCrate, PickUpCrate, ApproachPlayer, ThrowObstacle });
+        attackUsingCrate.AddMethod(new List<Task>() { ApproachPlayer, ThrowObstacle });
 
-        var getRock = new CompoundTask();
-        getRock.AddMethod(new List<Task>() { ApproachRock, PickUpRock });
-        root.AddMethod(new List<Task>() { getCrate, ApproachPlayer, ThrowObstacle });
-        root.AddMethod(new List<Task>() { getRock, ApproachPlayer, ThrowObstacle });
+        var attackUsingRock = new CompoundTask();
+        attackUsingRock.AddMethod(new List<Task>() { ApproachRock, PickUpRock, ApproachPlayer, ThrowObstacle});
+        attackUsingRock.AddMethod(new List<Task>() { ApproachPlayer, ThrowObstacle });
 
+        var move = new CompoundTask();
+        move.AddMethod(new List<Task>() { ApproachPlayer });
+        move.AddMethod(new List<Task>() { ApproachRandom });
+        
+        root.AddMethod(new List<Task>() { attackUsingCrate });
+        root.AddMethod(new List<Task>() { attackUsingRock });
+        root.AddMethod(new List<Task>() { move });
 
     }
 

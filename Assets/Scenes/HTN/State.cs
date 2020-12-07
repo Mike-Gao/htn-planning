@@ -16,6 +16,8 @@ public class State
     
     public Vector3 location;
 
+    public float random;
+
 
     public int hit;
     public Vector3 playerLocation;
@@ -30,6 +32,7 @@ public class State
             nearestObject = nearestObject,
             target = target,
             location = location,
+            random = random,
             hit = hit,
             playerLocation = playerLocation,
         };

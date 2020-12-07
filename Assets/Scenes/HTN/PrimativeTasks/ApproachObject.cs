@@ -15,7 +15,7 @@ public class ApproachObject : PrimativeTask
     }
     public override bool Prev(State s)
     {
-        if (objType == "crate" && s.crateCount > 0 && s.nearestObject.tag == "crate" || objType == s.nearestObject.tag) {
+        if (objType == "crate" && s.crateCount > 0 && s.nearestObject.tag == "crate" && Global.ws.random > 0.5 || objType == s.nearestObject.tag) {
             return true;
         } else {
             return false;
