@@ -22,6 +22,7 @@ public class ApproachPlayer : PrimativeTask
         // Shooting range is sqrt(40)
         if ( (m.agent.destination - m.transform.position).sqrMagnitude < 30  && m.agent.velocity.sqrMagnitude < 0.001)
         {
+            Debug.Log("APPROACHPLAYER - TERMINATES");
             m.agent.isStopped = true;
             m.agent.ResetPath();
             return true;
