@@ -80,4 +80,25 @@ public class Self : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log("Collision");
+        
+        if (col.gameObject.tag == "crate") {
+            if (!shielded){
+                Global.ws.hit++;
+            }
+            
+            Destroy(col.transform.parent.gameObject);
+            Destroy(col.gameObject);
+        }
+
+        if (col.gameObject.tag == "rock") {
+            if (!shielded) {
+                Global.ws.hit++;
+            }
+            Global.ws.hit++;
+        }
+    }
+
 }
