@@ -81,9 +81,7 @@ public class Self : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider col)
-    {
-        Debug.Log("Collision");
-        
+    {   
         if (col.gameObject.tag == "crate") {
             if (!shielded){
                 Global.ws.hit++;

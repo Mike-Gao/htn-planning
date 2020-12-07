@@ -128,4 +128,17 @@ public class Steering : MonoBehaviour
     {
         lvlmgr.mice.Remove(this);
     }
+
+    void OnTriggerEnter(Collider col)
+    {
+        // Mouse hit by projectile or cave monster should be removed
+        if (col.gameObject.tag == "monster"){
+            Destroy(this);
+        }
+        if (col.gameObject.tag == "crate" || col.gameObject.tag == "rock") {
+            // if its a projectile, destroy
+            if (col.gameObject.transform.position.y > 2) Destroy(this);
+        }
+
+    }
 }
