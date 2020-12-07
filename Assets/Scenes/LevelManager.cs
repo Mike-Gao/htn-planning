@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
             //Pause the simulation
             Time.timeScale = 0;
         }
-        if (Global.ws.hit == 3) {
+        if (Global.ws.hit >= 2) {
             displayWin.text = "YOU LOST!";
             Time.timeScale = 0;
         }
