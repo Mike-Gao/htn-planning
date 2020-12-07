@@ -14,7 +14,7 @@ public class ApproachPlayer : PrimativeTask
     }
 
     public override void Start(Monster m) {
-        m.agent.destination = Global.ws.playerLocation - m.transform.position;
+        m.agent.destination =  Global.ws.playerLocation - (Global.ws.playerLocation - m.transform.position) / 2;
     }
 
     public override bool Terminates(Monster m)

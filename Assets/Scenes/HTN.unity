@@ -1000,12 +1000,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rock: {fileID: 6849351536428035016, guid: d64f126ff34f3200883104bf09b0075d, type: 3}
   crate: {fileID: 6849351536428035016, guid: ddaafe586c4a75466a323ea138cf2a8a, type: 3}
-  obstacleCount: 80
+  mouseprefab: {fileID: 8497887166562474511, guid: 707cda16117a55fb0ab9413a0fa3db1b,
+    type: 3}
+  obstacleCount: 40
+  mouseCount: 10
   allpoints: []
   obstacles: []
+  mice: []
   start: {fileID: 630017624}
   end: {fileID: 1169531620}
   spawn_pos: {fileID: 51878015}
+  player: {fileID: 0}
   displayWin: {fileID: 1213825523}
 --- !u!1 &876059793
 GameObject:

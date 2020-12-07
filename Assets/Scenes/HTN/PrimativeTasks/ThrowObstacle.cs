@@ -12,6 +12,7 @@ public class ThrowObstacle : PrimativeTask
 
     public override bool Prev(State s)
     {
+        Debug.Log(s.playerInRange && s.ObjectInHand != null);
         return s.playerInRange && s.ObjectInHand != null;
     }
 
@@ -22,7 +23,7 @@ public class ThrowObstacle : PrimativeTask
 
     public override void Start(Monster m)
     {
-        tgt = new Vector3(m.player.transform.position.x, Global.ws.ObjectInHand.transform.position.y, Global.ws.ObjectInHand.transform.position.z);
+        tgt = new Vector3(m.player.transform.position.x, Global.ws.ObjectInHand.transform.position.y, m.player.transform.position.z);
         Global.ws.ObjectInHand.transform.SetParent(null);
     }
 
@@ -32,16 +33,19 @@ public class ThrowObstacle : PrimativeTask
         if (cur.x != tgt.x || cur.z != tgt.z)
         {
             Global.ws.ObjectInHand.transform.position = Vector3.MoveTowards(cur, tgt, velocity * Time.deltaTime);
+            Debug.Log(cur);
             return false;
         }
 
-        if (cur.y > 1)
+        if (cur.y > 1.38)
         {
             var newtgt = new Vector3(tgt.x, 1, tgt.z);
+            Debug.Log(newtgt);
             Global.ws.ObjectInHand.transform.position = Vector3.MoveTowards(cur, newtgt, velocity * Time.deltaTime);
             return false;
         }
 
+        Debug.Log("something here outside if");
         Global.ws.ObjectInHand = null;
         return true;
     }

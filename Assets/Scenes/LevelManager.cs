@@ -13,17 +13,22 @@ public class LevelManager : MonoBehaviour
 
     public GameObject crate;
 
+    public Steering mouseprefab;
+
     public int obstacleCount;
+    public int mouseCount;
     public static int tileScale = 3; //default tile size 3
     public List<Vector2Int> allpoints = new List<Vector2Int>();
 
     public List<GameObject> obstacles = new List<GameObject>();
+
+    public List<Steering> mice = new List<Steering>();
     public Transform start;
     public Transform end;
 
     public Transform spawn_pos;
 
-    private Self player;
+    public Self player;
 
     public Text displayWin;
 
@@ -43,9 +48,12 @@ public class LevelManager : MonoBehaviour
         // If go back to spawn and treasure pickedup, player wins
         if(Global.ws.treasurePickedUp && (player.transform.position - spawn_pos.position).sqrMagnitude < 20) {
             displayWin.text = "YOU WIN!";
+            //Pause the simulation
+            Time.timeScale = 0;
         }
         if (Global.ws.hit == 3) {
             displayWin.text = "YOU LOST!";
+            Time.timeScale = 0;
         }
 
     }
@@ -53,22 +61,29 @@ public class LevelManager : MonoBehaviour
     void GenerateRandomObstacles()
     {
         int spawnedCount = 0;
-        int iter = 0;
-        int maxIter = 40;
-        while(spawnedCount < obstacleCount && iter < maxIter){
+        while(spawnedCount < obstacleCount)
+        {
             Vector3 pos = new Vector3(Random.Range(start.position.x, end.position.x), 0, Random.Range(start.position.z, end.position.z));
             if(!Physics.CheckBox(pos, Global.obstacleHalfExtents)){
                 GameObject prefab = Random.value > 0.5 ? rock : crate;
                 obstacles.Add(Instantiate(prefab, pos, Quaternion.Euler(0, Random.Range(0f, 90f), 0)));
                 spawnedCount++;
             }
-            iter++;
         }
 
     }
 
     void SpawnMouse()
     {
+        int spawnedCount = 0;
+        while (spawnedCount < mouseCount)
+        {
+            Vector3 pos = new Vector3(Random.Range(start.position.x, end.position.x), 0, Random.Range(start.position.z, end.position.z));
+            if(!Physics.CheckBox(pos, Global.obstacleHalfExtents)){
+                mice.Add(Instantiate(mouseprefab, pos, Quaternion.Euler(0, Random.Range(0f, 90f), 0)));
+                spawnedCount++;
+            }
+        }
 
     }
 
