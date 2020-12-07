@@ -26,8 +26,9 @@ public class Self : MonoBehaviour
     void Start()
     {
         chara_control = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // TODO: Comment out the following two line when debugging
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame

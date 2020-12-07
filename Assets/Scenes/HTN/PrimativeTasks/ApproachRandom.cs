@@ -6,27 +6,29 @@ public class ApproachRandom : PrimativeTask
 {
     public override string name { get; }
 
-    public Vector3 loc;
-
-    public ApproachRandom(Transform a, Transform b)
+    public ApproachRandom()
     {
-        loc = new Vector3(Random.Range(a.position.x, b.position.x), 1f, Random.Range(a.position.z, b.position.z));
-        name = "Approach" + loc.ToString();
+        name = "ApproachRandom";
     }
     public override bool Prev(State s)
     {
-        return (!s.ObjectInHand);
+        if (s.ObjectInHand is null) {
+            return true;
+        }
+        return false;
     }
 
     public override void Start(Monster m){
-        m.agent.destination = loc;
+        m.agent.destination = Global.ws.randPos;
     }
 
 
     public override bool Terminate(Monster m)
     {
-        if ((m.agent.destination - m.transform.position).sqrMagnitude < 15 && m.agent.velocity.sqrMagnitude < 0.001)
+        if ((m.agent.destination - m.transform.position).sqrMagnitude < 30 && m.agent.velocity.sqrMagnitude < 0.001)
         {
+            Debug.Log("APPROACHRANDOM - TERMINATES");
+            Debug.Log(m.agent.destination);
             m.agent.isStopped = true;
             m.agent.ResetPath();
             return true;
@@ -36,6 +38,6 @@ public class ApproachRandom : PrimativeTask
 
     public override void Post(State s)
     {
-        s.location = loc;
+        s.location = Global.ws.randPos;
     }
 }

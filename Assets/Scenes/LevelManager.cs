@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour
 
     void UpdateRandom(){
         Global.ws.random = Random.Range(0f, 1f);
+        Global.ws.randPos = new Vector3(Random.Range(start.position.x, end.position.x), 1f, Random.Range(start.position.z, end.position.z));
     }
 
 

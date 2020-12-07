@@ -18,6 +18,8 @@ public class State
 
     public float random;
 
+    public Vector3 randPos;
+
 
     public int hit;
     public Vector3 playerLocation;
@@ -33,6 +35,7 @@ public class State
             target = target,
             location = location,
             random = random,
+            randPos = randPos,
             hit = hit,
             playerLocation = playerLocation,
         };
